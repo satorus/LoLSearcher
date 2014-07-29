@@ -1,0 +1,105 @@
+@CHARSET "ISO-8859-1";
+/* Author: Oliver Frendo */
+
+html {
+	background:#F5F5F5;
+	/*font-family: 'Droid Sans', sans-serif;*/
+	/*font-family: "Lucida Sans Unicode","Lucida Sans",Geneva,Verdana,sans-serif; */
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	
+	/*background:#3c3c3c;
+	background: -webkit-gradient(linear, left top, left bottom, from(#548ED6), to(#0E272A));
+	background: -webkit- linear-gradient(top, #548ED6, #0E272A);
+	background: -moz- linear-gradient(top, #548ED6, #0E272A);
+	background: -ms- linear-gradient(top, #548ED6, #0E272A);
+	background: linear-gradient(top, #548ED6, #0E272A); */
+	
+	/*height: 465px;*/
+}
+body {
+	width: 284px;
+	height:  /*372px;*/
+}
+#wrapper1 {
+	
+}
+
+form {
+	margin: 15px;
+}
+input {
+	width: 250px;
+	font-size: 20px;
+}
+.button_submit {
+	width: 254px;
+	height: 26px;
+	font-size: 12px;
+	padding: 0px;
+}
+
+/*.ui-autocomplete {
+	max-height: 270px; 
+	overflow-y: scroll; 
+}*/
+
+/* RND CRAP!!!! */
+	
+#navi {
+	margin-top: 0px;
+}
+	
+#navi ul {
+	padding: 0;
+	margin:0;
+	list-style: none;
+}
+	
+#navi li {
+	width: 110px;
+	display: inline-block;
+	font-size: 20px;
+	padding:3.5px 15px 3.5px 15px;
+	color:#fff;
+}
+#tab1 {
+	text-align:center;
+	border-bottom-left-radius:5px;
+	border-top-left-radius:5px;
+}
+#tab2 {
+	text-align: center;
+	border-bottom-right-radius:5px;
+	border-top-right-radius:5px;
+}
+
+
+.tabinact {
+	cursor:pointer;
+	background:#3c3c3c;
+	background: -webkit-gradient(linear, left top, left bottom, from(#848487), to(#3c3c3c));
+
+}
+	
+.tabact {
+	cursor:default;
+	background:#59B4D4;
+}
+
+#settings {
+	text-align: right;
+}
+
+#button_settings {
+	padding: 0px;
+	margin-right: 15px;
+	float:right;
+	width: 40px;
+	height: 20px;
+}
+
+#button_settings {
+	
+	margin-bottom:8px;
+	
+	}
