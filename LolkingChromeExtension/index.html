@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- Author: Oliver Frendo -->
+		<meta charset="ISO-8859-1">
+		<title>League of Legends Searcher</title>
+		<link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    	<link rel="stylesheet" href="css/ui-darkness/jquery-ui-1.10.1.custom.css" />
+    	<script src="js/jquery.min.js"></script>
+    	<script src="js/jquery-ui-1.10.1.custom.js"></script>
+    	<script src="js/global_variables.js"></script>
+        <script src="js/choice.js"></script>
+		<script src="js/script.js"></script>
+    	<link rel="stylesheet" href="css/layout.css" />
+	</head>
+<body>
+
+	<div id="navi">
+	<ul>
+		<li id="tab1">Search
+		</li><li id="tab2">History
+		</li>
+	</ul>
+	</div>
+	<div id="wrapper1">
+		<form id="form_search_summoner">
+			Search for summoner: <br>
+			<input type="text" class="input_summoner_search" id="input_summoner" /> 
+			<button id="button_summoner_search" class="button_submit"></button>
+			<button style="margin-top:1px;" id="input_charts" class="button_submit">Lolking Charts</button>
+		</form>
+		
+		<form id="form_search_guides">
+			Search for champion guide: <br>
+			<input type="text" class="input_champion_search" id="input_champion_guide" />
+			<button id="button_guides_search" class="button_submit"></button>
+		</form>
+		
+		<form id="form_search_counters">
+			Search for counters: <br>
+			<input type="text" class="input_champion_search" id="input_champion_counter" />
+			<button id="button_counters_search" class="button_submit"></button>
+		</form>	
+		
+		<form id="form_search_ongoing_games">
+			<button id="button_ongoing_games_search" class="button_submit"></button>
+		</form>
+
+		<button id="button_settings" title="Settings"></button>
+
+	</div>
+
+	<div style="display:none;" id="wrapper2">
+		<form id="form_search_history">
+			Look for recent searches:<br>
+			<input type="text" id="input_history_search" />
+			<button class="button_submit">Search history</button>
+		</form>
+	</div>
+
+</body>
+</html>
