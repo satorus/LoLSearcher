@@ -147,7 +147,7 @@ $(document).ready(function () {
     //Champions using LoL - API
     var champs_string = "";  
     var actVersion = "";
-    var champs = localStorage.getItem('champs');
+    var champs = JSON.parse(localStorage.getItem('champs')) || {data: [],version: ""};
     
     var old_champs_string =
 		"Aatrox;Ahri;Akali;Alistar;Amumu;Anivia;Annie;Ashe;Blitzcrank;Brand;Braum;Caitlyn;Cassiopeia;Cho'Gath;Corki;" +
@@ -158,43 +158,50 @@ $(document).ready(function () {
 		"Pantheon;Poppy;Quinn;Rammus;Renekton;Rengar;Riven;Rumble;Ryze;Sejuani;Shaco;Shen;Shyvana;" +
 		"Singed;Sion;Sivir;Skarner;Sona;Soraka;Swain;Syndra;Talon;Taric;Teemo;Thresh;Tristana;Trundle;" +
 		"Tryndamere;Twisted Fate;Twitch;Udyr;Urgot;Varus;Vayne;Veigar;Vel'Koz;Vi;Viktor;Vladimir;Volibear;Warwick;" +
-		"Wukong;Xerath;Xin Zhao;Yasuo;Yorick;Zac;Zed;Ziggs;Zilean;Zyra";
+		"Wukong;Xerath;Xin Zhao;Yasuo;Yorick;Zac;Zed;Ziggs;Zilean;Zyra;Test;";
     
     $.get("https://global.api.pvp.net/api/lol/static-data/euw/v1.2/versions?api_key=c844dd52-06ee-4f6a-897f-e845f60d46dd",function(responseData){
     	actVersion = responseData[0];
-    }).fail(function(){
-    	if(champs != null){
-    		actVersion = champs.version;	//set actVersion to version of champ objet so that the champ names are not loaded again when the version request failed
+    	
+    	console.log(champs);
+    	console.log(actVersion);
+    	
+    	if(champs == null || champs.version != actVersion){
+    		champs = {
+    				data: [],
+    				version: ""
+    		};
+    		$.get("https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?api_key=c844dd52-06ee-4f6a-897f-e845f60d46dd",function(responseData){
+    			console.log(responseData);
+    			var champData = responseData.data;
+    			for(var key in champData){
+    				if(champData.hasOwnProperty(key)){
+    					champs_string += champData[key].name + ";";
+    				}
+    			}
+    			champs.data = champs_string.split(";");
+    			champs.version = responseData.version;
+    			localStorage.setItem('champs',JSON.stringify(champs));
+    			
+    			//last check if there is something in champs...may by useless to check again...
+    			if(champs == null || champs == undefined || champs.data == []){
+    				champs.data = old_champs_string.split(";");
+    				console.log("if path");
+    			}
+    			console.log(champs);
+    		}).fail(function(){
+    			champs.data = old_champs_string.split(";");		//set champs with old_Chmap_String when request failed
+    			console.log(champs);
+    		});
     	}
+    }).fail(function(){
+		champs.data = old_champs_string.split(";");		//set champs with old_Chmap_String when request failed
+		console.log(champs);
     });
     
-    if(champs == null || champs.version != actVersion){
-	    champs = {
-	    	data: [],
-	    	version: ""
-	    };
-	    $.get("https://global.api.pvp.net/api/lol/static-data/euw/v1.2/champion?api_key=c844dd52-06ee-4f6a-897f-e845f60d46dd",function(responseData){
-	    	console.log(responseData);
-			var champData = responseData.data;
-			for(var key in champData){
-				if(champData.hasOwnProperty(key)){
-					champs_string += champData[key].name + ";";
-				}
-			}
-			champs.data = champs_string.split(";");
-			champs.version = responseData.version;
-			localStorage.setItem('champs',champs);
-	    }).fail(function(){
-	    	champs.data = old_champs_string.split(";");		//set champs with old_Chmap_String when request failed
-	    	console.log(champs);
-	    });
-	}
 
    
-    //last check if there is something in champs...may by useless to check again...
-    if(champs == null || champs == undefined || champs.data == []){
-    	champs.data = old_champs_string.split(";");
-    }
+
 
     $(".input_champion_search").autocomplete({
         source: function (request, response) {
